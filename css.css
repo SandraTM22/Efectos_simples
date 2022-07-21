@@ -1,0 +1,246 @@
+body{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-around;
+
+}
+
+/* A cada div y parrafos le pondremos unos estilos standar */
+div{
+    background: hsl(175, 70%, 54%);
+    padding: 3%;
+    width: 15%;
+    margin-top: 3%;
+    margin-bottom: 2%;
+    min-width: 400px;
+}
+p{
+    font-size: 2em;
+    text-align: center;
+    font-family: fantasy;
+    font-style: italic;
+}
+
+/************************Primer Hover*******************************/
+.triangulo{   
+    /* Al poner el transfor a 0,visualmente no notaremos nada, 
+    pero habra que ponerlo o nuestro "triangulo se descuadrará */
+    transform: translateX(0);
+    transition-duration: 0.5s;
+}
+
+
+    /* ::before crea un pseudoelemento que es el primer hijo del elemento seleccionado. Es usado normalmente para añadir contenido estético a un elemento, usando la propiedad content. Este elemento se muestra en línea con el texto de forma predeterminada. */
+
+.triangulo::before{
+    transition-duration: 0.5s;
+    /* Content se utiliza para añadir texto o elementos dinamicamente al html.
+    si no lo pusieramos no apareceria nuestro "triangulo */
+    content: "";
+    /* Lo posicionamos para que pueda aparecer por arriba cuando con hover nos traslademos hacia abajo (eje Y) */
+    position: absolute;
+    top: 0px;
+    /* ya hemos creado un "trozo de html que esta vacio, ahora le damos unos bordes y podremos darle colores y anchuras hasta que encontremos el triangulo,
+    Se puede ver mas claro poniendo alguna palabra en content*/
+    border-style: solid;
+    border-width: 0px 20px 20px 20px;
+    border-color: transparent transparent hsl(175, 70%, 54%) transparent;
+    /* Situamos nuestro triangulo al centro de la cajita */
+    left: 50%;
+    margin-left: -20px;
+}
+
+.triangulo:hover::before{
+    /* desplazamos hacia a arriba nuestro triangulo*/
+    top:-18px;
+}
+
+.triangulo:hover{
+    /* desplazamos hacia abajo nuestra caja princial(en este caso el parrafo) */
+    transform:translateY(8px);
+}
+
+/************************Segundo Hover*******************************/
+.t_lado{
+    /* Al poner el transfor a 0,visualmente no notaremos nada, 
+    pero habra que ponerlo o nuestro "triangulo se descuadrará */
+    transform: translateX(0);
+    transition-duration: 0.5s;
+}
+
+.t_lado::before{
+    transition-duration: 0.5s;
+    content: "";
+    position: absolute;
+    left: 0px;
+    border-style: solid;
+    border-width: 20px 20px 20px 0px;
+    border-color: transparent  hsl(175, 70%, 54%) transparent transparent;
+    /* Situamos nuestro triangulo al centro del lateral de la cajita */
+    top: 50%;
+    margin-top: -20px;
+}
+
+.t_lado:hover::before{
+    /* desplazamos hacia a la izquierda nuestro triangulo*/
+    left:-18px;
+}
+
+.t_lado:hover{
+    /* desplazamos hacia la derecha nuestra caja princial(en este caso el parrafo) */
+    transform:translateX(8px);
+}
+
+/************************Tercer Hover*******************************/
+.esquina{
+    transform: translateX(0);
+}
+
+.esquina::before{
+    transition-duration: 0.5s;
+    content: "";
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 0;
+    height: 0;
+    background: linear-gradient(
+         45deg,
+         hsl(0, 0%, 100%) 45%, 
+         hsl(0, 9%, 75%) 50%, 
+         hsl(0, 6%, 68%) 60%,
+         hsl(0, 0%, 100%));
+}
+.esquina:hover::before{
+    width: 45px;
+    height: 45px;
+}
+
+/************************Cuarto Hover*******************************/
+.sombra{
+    transform:translateX(0);
+    transition-duration: 0.5s;
+}
+
+.sombra::before{
+    content: "";
+    position: absolute;
+    width: 90%;
+    height: 20%;
+    left: 5%;
+    top:100%;
+     background:-webkit-radial-gradient(
+        center, ellipse,
+        rgba(30, 67, 189, 0.45) 0%,
+        rgba(0, 0, 0, 0) 80%); 
+
+    opacity: 0;
+    transition-duration: 0.5s;
+}
+
+.sombra:hover{
+    transform: translateY(-5px);
+}
+
+.sombra:hover::before{
+    transform: translateY(5px);
+    opacity: 1;
+}
+
+/************************Quinto Hover*******************************/
+.sombra-int{
+    transition-duration: 0.2s;
+}
+.sombra-int:hover{
+    box-shadow: 3px 3px 10px rgb(18, 9, 100) inset,
+    -3px -3px 10px black inset ;
+}
+
+/************************Sexto Hover*******************************/
+.borde{
+    transition-duration: 0.3s;
+    box-shadow: 0px 0px 0px 4px rgb(18, 9, 100);
+}
+.borde:hover{
+    box-shadow: 0px 0px 0px 8px rgb(216, 252, 14);
+}
+
+/************************Septimo Hover*******************************/
+.borde_interno{
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.borde_interno::before{
+    content: "";
+    position: absolute;
+    border: 4px solid blue;
+    top:5px;
+    bottom: 5px;
+    left: 5px;
+    right: 5px;
+    opacity: 0;
+    transition-duration: 0.3s;
+}
+.borde_interno:hover::before{
+    opacity: 1;
+}
+
+/************************Octavo Hover*******************************/
+.borde_expandido{
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.borde_expandido::before{
+    content: "";
+    position: absolute;
+    border: 4px solid blue;
+    top:0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    transition: 0.5s;
+}
+
+.borde_expandido:hover::before{
+    top: -20px;
+    bottom: -20px;
+    left: -20px;
+    right: -20px;
+}
+
+/************************Noveno Hover*******************************/
+.borde_recogido{
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.borde_recogido::before{
+    content: "";
+    position: absolute;
+    border: 4px solid blue;
+    top: -20px;
+    bottom: -20px;
+    left: -20px;
+    right: -20px;   
+    transition: 0.5s;
+    opacity: 0;
+}
+
+.borde_recogido:hover::before{
+    top:0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    opacity: 1;
+}
+
+/************************Decimo Hover*******************************/
+.esquinas_red{
+    transition-duration: 0.5s;
+}
+.esquinas_red:hover{
+    border-top-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
